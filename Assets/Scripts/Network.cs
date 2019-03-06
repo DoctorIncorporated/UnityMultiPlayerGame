@@ -21,20 +21,32 @@ public class Network : MonoBehaviour {
         socket.On("disconnected", OnDisconnected);
         socket.On("register", OnRegister);
         socket.On("updatePosition", OnUpdatePosition);
+		socket.On("requestPosition", OnRequestPosition);
 	}
 
-    private void OnUpdatePosition(SocketIOEvent obj)
+	private void OnRequestPosition(SocketIOEvent obj)
+	{
+		socket.Emit("updatePosition", PosToJson(spawner.localPlayer.transform.position, spawner.localPlayer.transform.rotation.z));
+	}
+
+	private void OnUpdatePosition(SocketIOEvent obj)
     {
         Debug.Log("Updating positions" + obj.data);
 
-        var v = float.Parse(obj.data["v"].ToString().Replace("\"", ""));
-        var h = float.Parse(obj.data["h"].ToString().Replace("\"", ""));
+		//var v = float.Parse(obj.data["v"].ToString().Replace("\"", ""));
+		//var h = float.Parse(obj.data["h"].ToString().Replace("\"", ""));
 
-        var player = spawner.FindPlayer(obj.data["id"].ToString());
+		var position = MakePosFromJSON(obj);
+		var rotation = obj.data["rotz"].n;
+        var player = spawner.FindPlayer(obj.data["id"].str);
 
-        var playerMover = player.GetComponent<PlayerMovementNetwork>();
-        playerMover.h = h;
-        playerMover.v = v;
+
+		player.transform.position = position;
+		player.transform.eulerAngles = new Vector3(0, 0, rotation);
+
+        //var playerMover = player.GetComponent<PlayerMovementNetwork>();
+        //playerMover.h = h;
+        //playerMover.v = v;
     }
 
     private void OnRegister(SocketIOEvent obj)
@@ -56,7 +68,7 @@ public class Network : MonoBehaviour {
     private void OnMove(SocketIOEvent obj)
     {
         //Debug.Log("Player Moving" + obj.data);
-        var id = obj.data["id"].ToString();.Replace("\"", "");
+        var id = obj.data["id"].ToString().Replace("\"", "");
         //Debug.Log(id);
 
         var v = float.Parse(obj.data["v"].ToString().Replace("\"", ""));
@@ -99,4 +111,19 @@ public class Network : MonoBehaviour {
     {
         return string.Format(@"{{""v"":""{0}"",""h"":""{1}""}}", dirV, dirH);
     }
+
+	public static JSONObject PosToJson(Vector3 pos, float rotz)
+	{
+		JSONObject jpos = new JSONObject(JSONObject.Type.OBJECT);
+		jpos.AddField("x", pos.x);
+		jpos.AddField("y", pos.y);
+		jpos.AddField("z", pos.z);
+		jpos.AddField("rotz", rotz);
+		return jpos;
+	}
+
+	public static Vector3 MakePosFromJSON(SocketIOEvent e)
+	{
+		return new Vector3(e.data["x"].n, e.data["y"].n, e.data["z"].n);
+	}
 }
