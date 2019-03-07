@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/001358388/Desktop/Unity MultiPlayer Game/UnityMultiPlayerGame/MultiPlayerGame.exe
+C:/Users/001358388/Desktop/Unity MultiPlayer Game/UnityMultiPlayerGame/Build Folder/MultiPlayerGame.exe
 SceneListBegin?
 Assets/Scenes/gamescene.unity
 SceneListEnd?
@@ -123,6 +123,7 @@ e1ea12ca952c81d81a9a21fdf34446ed UnityEngine.HoloLens.dll:UnityEngine.EventSyste
 98d69a140ec0084cde3b6a5e09aea295 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 96f3ea9f23b6f08e60710ebb4af49174 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
+cbd69adf556db15dd3b57d0e810abb4f Assembly-CSharp.dll:.NetworkInput
 8b64711653d72c275cb7628d66d50eee Assembly-CSharp.dll:.Network
 7a14ec497bda368e9387dfd4ba1803a3 Assembly-CSharp.dll:.PlayerMovementNetwork
 f16835701e71dd5d6fb1fed4b7aff1d8 Unity.TextMeshPro.dll:TMPro.TMP_Asset

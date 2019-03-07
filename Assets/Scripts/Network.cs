@@ -26,7 +26,7 @@ public class Network : MonoBehaviour {
 
 	private void OnRequestPosition(SocketIOEvent obj)
 	{
-        socket.Emit("updatePosition", PosToJson(spawner.localPlayer.transform.position, spawner.localPlayer.transform.rotation.z));
+        socket.Emit("updatePosition", PosToJson(spawner.localPlayer.transform.position, spawner.localPlayer.transform.rotation.eulerAngles.z));
 	}
 
 	private void OnUpdatePosition(SocketIOEvent obj)
@@ -43,10 +43,6 @@ public class Network : MonoBehaviour {
 
 		player.transform.position = position;
 		player.transform.eulerAngles = new Vector3(0, 0, rotation);
-
-        //var playerMover = player.GetComponent<PlayerMovementNetwork>();
-        //playerMover.h = h;
-        //playerMover.v = v;
     }
 
     private void OnRegister(SocketIOEvent obj)
@@ -68,15 +64,18 @@ public class Network : MonoBehaviour {
     private void OnMove(SocketIOEvent obj)
     {
         //Debug.Log("Player Moving" + obj.data);
-        var id = obj.data["id"].ToString().Replace("\"", "");
-        //Debug.Log(id);
+        var id = obj.data["id"].ToString();
+        Debug.Log(id);
 
-        var v = float.Parse(obj.data["v"].ToString().Replace("\"", ""));
-        var h = float.Parse(obj.data["h"].ToString().Replace("\"", ""));
+        //var v = float.Parse(obj.data["v"].ToString().Replace("\"", ""));
+        //var h = float.Parse(obj.data["h"].ToString().Replace("\"", ""));
 
+        var v = float.Parse(obj.data["v"].str);
+        var h = float.Parse(obj.data["h"].str);
 
+        Debug.Log(v);
         var player = spawner.FindPlayer(id);
-
+        Debug.Log(player);
         var playerMover = player.GetComponent<PlayerMovementNetwork>();
         playerMover.v = v;
         playerMover.h = h;

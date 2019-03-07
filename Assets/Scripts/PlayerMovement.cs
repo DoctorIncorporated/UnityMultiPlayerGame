@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour {
 
     // Update is called once per frame
     private void FixedUpdate(){
-        transform.Rotate(0, 0, -Input.GetAxisRaw("Horizontal") * 100f * Time.deltaTime);
+        transform.Rotate(0, 0, -Input.GetAxis("Horizontal") * 100f * Time.deltaTime);
 
         if (Input.GetAxis("Vertical") > 0 || Input.GetAxis("Horizontal") != 0)
         {
@@ -22,8 +22,8 @@ public class PlayerMovement : MonoBehaviour {
 
         if (Input.GetAxis("Vertical") > 0)
         {
-            rb2d.AddForce(transform.up * 5f * Input.GetAxisRaw("Vertical"));
-            //Network.Move(Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Horizontal"));
+            rb2d.AddForce(transform.up * 5f * Input.GetAxis("Vertical"));
+            //Network.Move(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
         }
         else
         {

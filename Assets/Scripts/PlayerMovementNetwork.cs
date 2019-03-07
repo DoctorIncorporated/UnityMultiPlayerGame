@@ -16,10 +16,10 @@ public class PlayerMovementNetwork : MonoBehaviour {
     private void FixedUpdate(){
         transform.Rotate(0, 0, -h * 100f * Time.deltaTime);
 
-        if(v > 0 || h != 0)
-        {
-            Network.Move(v, h);
-        }
+        //if(v > 0 || h != 0)
+        //{
+        //    //Network.Move(v, h);
+        //}
 
         if (v > 0)
         {
