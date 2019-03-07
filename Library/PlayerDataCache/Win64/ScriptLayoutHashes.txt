@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/001358388/UnityProjects/MultiPlayerGame/Build Folder/MultiPlayerGame.exe
+C:/Users/001358388/Desktop/Unity MultiPlayer Game/UnityMultiPlayerGame/MultiPlayerGame.exe
 SceneListBegin?
 Assets/Scenes/gamescene.unity
 SceneListEnd?

@@ -418,6 +418,11 @@ namespace SocketIO
 			}
 		}
 
-		#endregion
-	}
+        internal void On(string v)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+    }
 }

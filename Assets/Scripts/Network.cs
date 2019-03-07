@@ -26,7 +26,7 @@ public class Network : MonoBehaviour {
 
 	private void OnRequestPosition(SocketIOEvent obj)
 	{
-		socket.Emit("updatePosition", PosToJson(spawner.localPlayer.transform.position, spawner.localPlayer.transform.rotation.z));
+        socket.Emit("updatePosition", PosToJson(spawner.localPlayer.transform.position, spawner.localPlayer.transform.rotation.z));
 	}
 
 	private void OnUpdatePosition(SocketIOEvent obj)
@@ -88,7 +88,7 @@ public class Network : MonoBehaviour {
         var player = spawner.SpawnPlayer(obj.data["id"].ToString());
 
         //spawn existing players at location
-	}
+    }
 
 	private void OnTalkBack(SocketIOEvent obj)
 	{
